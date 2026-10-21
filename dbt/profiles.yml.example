@@ -1,0 +1,7 @@
+caged:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ../data/warehouse/caged.duckdb
+      threads: 4

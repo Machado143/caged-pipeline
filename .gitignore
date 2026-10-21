@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.python-version
+
+# Env e segredos
+.env
+.env.*
+!.env.example
+
+# Dados brutos e camadas (estrutura versionada via .gitkeep)
+data/bronze/*
+data/silver/*
+data/gold/*
+data/warehouse/*
+!data/**/.gitkeep
+
+*.parquet
+*.7z
+*.txt
+!tests/fixtures/**
+!tests/fixtures/**/*.txt
+
+# CSV gerados — seeds do dbt precisam da exceção (ordem: ignorar, depois reincluir)
+*.csv
+!dbt/seeds/
+!dbt/seeds/**
+!dbt/seeds/*.csv
+!dbt/seeds/**/*.csv
+
+# Ferramentas
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+
+# SO / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

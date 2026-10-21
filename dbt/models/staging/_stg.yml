@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_caged
+    description: Microdados CAGED com nomes normalizados e tipos reais.
+    columns:
+      - name: competenciamov
+        description: Mês de referência da movimentação (AAAAMM).
+        tests:
+          - not_null
+      - name: uf
+        description: Código IBGE da UF.
+        tests:
+          - not_null
+      - name: secao
+        description: Seção CNAE 2.0 (A–U).
+        tests:
+          - not_null
+      - name: saldomovimentacao
+        description: +1 admissão, -1 desligamento.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, -1]
+      - name: salario
+        description: Salário mensal declarado (vírgula decimal no bronze).

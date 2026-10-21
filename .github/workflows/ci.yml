@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Instalar
+        run: python -m pip install -e ".[dev]"
+      - name: Lint
+        run: ruff check src tests app scripts
+      - name: Testes
+        run: pytest -q
+      - name: Bronze de amostra
+        run: python scripts/materialize_sample.py
+      - name: dbt parse e build
+        working-directory: dbt
+        run: |
+          dbt parse --profiles-dir . --target ci
+          dbt build --profiles-dir . --target ci --select stg_caged int_caged_movimentacoes fct_saldo_mensal

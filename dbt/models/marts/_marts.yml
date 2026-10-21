@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: fct_saldo_mensal
+    description: Saldo líquido (soma de saldomovimentação) por competência, UF e seção CNAE.
+    columns:
+      - name: competencia
+        tests:
+          - not_null
+      - name: uf
+        tests:
+          - not_null
+      - name: secao
+        tests:
+          - not_null
+      - name: saldo
+        description: Soma de +1/-1; não é contagem de linhas.
+        tests:
+          - not_null
